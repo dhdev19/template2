@@ -127,4 +127,4 @@ def download_project():
     return send_file(zip_buffer, mimetype='application/zip', as_attachment=True, download_name='project_package.zip')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
