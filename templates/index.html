@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="{{ url_for('static', filename='uploads/favicon.webp') }}" type="image/x-icon">
+<title>{{ project.title }}</title>
+<meta name="description" content="{{ project.description }}">
+<meta name="keywords" content="{{ project.keywords }}" />
+
+ 
+ 
+
+
+<link href="{{ url_for('static', filename='css/fonts.css') }}" type="text/css" rel="stylesheet">
+
+<link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/style.css') }}" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdn.tutorialjinni.com/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+<!--
+<style>
+  .about {
+	padding: 110px 0px 110px 0;
+	text-align:center;
+	background:linear-gradient(0deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 1)), url(../uploads/slider-1.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center;
+	background-attachment:fixed;
+}
+
+.our_aminities_section {
+	padding: 80px 0px 80px 0;
+	text-align:center;
+	background:url(../uploads/slider-2.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center;
+	background-attachment:fixed;
+	position:relative;
+}
+
+.our_project_gallery_section {
+	padding: 110px 0px 40px 0;
+	text-align:center;
+	background:linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(../uploads/slider-2.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center;
+	background-attachment:fixed;
+}
+
+.location_advantage_section {
+	padding: 110px 0px 40px 0;
+	text-align:center;
+	background:linear-gradient(0deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(../uploads/slider-2.jpg);
+	background-repeat:no-repeat;
+	background-size:cover;
+	background-position:center;
+	background-attachment:fixed;
+}
+
+</style
+ 
+-->
+</head>
+<body>
+ 
+ 
+
+
+<!--<div class="OfferBtn">
+	<h3><a href="#" data-toggle="modal" data-target="#exampleModal">EARLY BIRD DISCOUNT</a></h3>
+</div>-->
+
+
+<div class="sticky_icon">
+  <ul>
+    <li><a href="tel:{{ project.whatsappNumber }}"><i class="fa fa-phone" aria-hidden="true"></i></a></li>
+    <li><a href="https://wa.me/+91{{ project.whatsappNumber }}?text=I%20want%20to%20know%20about%20project." target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+    <li><a href="" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+  </ul>
+</div>
+<header class="wrap-header" id="myHeader">
+  <div class="main-menu">
+    <div class="container">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a href="index.php" class="navbar-brand"><img src="{{ url_for('static', filename='uploads/logo.webp') }}"  alt="imgAlt" width="200" height="71" class="img-responsive"></a> </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav pull-right">
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#amenities">Amenities</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#floor-plan">Floor Plans</a></li>
+              <li><a href="#location">Location</a></li>
+              <li><a href="#" data-toggle="modal" data-target="#exampleModal">Contact</a></li>
+              <li><a href="https://wa.me/+91{{ project.whatsappNumber }}?text=I%20want%20to%20know%20about%20project." target="_blank"><i class="fa fa-download animated slideInDown infinite" aria-hidden="true"></i> Brochure</a></li>
+              <li class="btn"><a href="tel:{{ project.whatsappNumber }}">+91 {{ project.whatsappNumber }}</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <a href="https://wa.me/+91{{ project.whatsappNumber }}?text=I%20want%20to%20know%20about%20project." target="_blank" class="mobile-view"><i class="fa fa-download animated slideInDown infinite" aria-hidden="true"></i> Brochure</a> </div>
+  </div>
+</header>
+
+
+
+<div class="container-fluid slider">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner" role="listbox">
+           {% if project.sliderImages %}
+  {% for image in project.sliderImages %}
+    <div class="item{% if loop.index == 2 %} active{% endif %}">
+      <img class="img-responsive" src="{{ url_for('static', filename=image) }}" alt="imgAlt" width="1920" height="1067">
+    </div>
+  {% endfor %}
+{% endif %}
+          <a class="left carousel-control" href="#myCarousel2" role="button" data-slide="prev"> <img src="{{ url_for('static', filename='uploads/left-arrow.svg') }}" alt="imgAlt" class="left-arrow"> <span class="sr-only">Previous</span> </a> <a class="right carousel-control" href="#myCarousel2" role="button" data-slide="next"> <img src="{{ url_for('static', filename='uploads/right-arrow.svg') }}" alt="imgAlt" class="right-arrow"> <span class="sr-only">Next</span> </a> </div>
+      </div>
+    </div>
+    
+    <div class="col-lg-4">
+        <div class="slider_content_left"> <img src="{{ url_for('static', filename='uploads/logo.webp') }}" alt="imgAlt" width="200" height="71">
+          <h4>{{ project.name }}</h4>
+          <h5>{{ project.formSubHeading }} </h5>
+          <p>{{ project.address }}</p>
+          <div class="price">
+            <h3><span>Starting From</span> <i class="fa fa-rupee" aria-hidden="true"></i> {{ project.startingfPrice }}</h3>
+          </div>
+        </div>
+        <div class="mobile"> <img src="{{ url_for('static', filename='uploads/logo.webp') }}" alt="imgAlt" width="200" height="71">
+            	
+                <div class="usp">
+                	<p>15% PRICE APPRECIATION IN 4 YEARS</p>
+                    <p>95% OCCUPANCY RATE</p> 
+                </div>
+          <div class="row">
+            <div class="col-xs-3">
+              <h4>{{ project.name }}</h4>
+            </div>
+            <div class="col-xs-9">
+              <h5>Traditional 1 BHK & 2 BHK Apartments</h5>
+          <p>{{ project.address }}</p>
+              <div class="price">
+                <h3><span>Starting From</span> <i class="fa fa-rupee" aria-hidden="true"></i>  1.25 Cr*</h3>
+              </div>
+            </div>
+          </div>
+          <div class="inquery-btn"> <a href="tel:{{ project.whatsappNumber }}" id="callbutton"><i class="fa fa-phone" aria-hidden="true"></i> Click To Call</a> <a href="https://wa.me/+91{{ project.whatsappNumber }}?text=I%20want%20to%20know%20about%20project." target="_blank" id="whatsappbutton"> <i class="fa fa-whatsapp" aria-hidden="true"> </i> CLick To WhatsApp</a> </div>
+        </div>
+        <div class="slider_form">
+          <h3>Book Your Visit</h3>
+          <form action=""  name="form" id="form" method="post">
+            <div class="col-lg-12">
+              <input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Full Name" required>
+            </div>
+            <div class="col-lg-12">
+              <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Your Phone Number" required>
+            </div>
+             
+            <div class="col-lg-12">
+              <input type="submit" class="btn" name="contactbut" id="contactbut" value="Submit" />
+            </div>
+            
+            <div class="col-lg-12">
+            	<input type="checkbox" checked=""> <span class="term-condition">By submitting I accept <a href="privacy-policy.php">Privacy Policy.</a></span>
+            </div>
+            
+          </form>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    
+    
+  </div>
+</div>
+</div>
+
+
+
+<div class="container-fluid about" id="overview">
+  <div class="container">
+    <div class="about_content">
+      <h1>{{ project.name }} Overview</h1>
+      <div class="row">
+        <div class="col-lg-6">
+          <p>{{ project.paragraph }}
+</p>
+          
+         
+          
+<!--<span id="text" style="display: none;">
+<p></p>
+</span>
+
+<div class="btn-container text-left">
+
+<button id="toggle">Read More</button>
+
+</div>-->
+
+
+
+        </div>
+        <div class="col-lg-6"> <img src="{{ url_for('static', filename='uploads/about-us.webp') }}" class="img-responsive" alt="imgAlt" width="800" height="480"> </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="our_aminities_section specification-section" id="amenities">
+  <div class="container-fluid" id="amenities">
+    <div class="row">
+      <div class="col-lg-12 col-xs-12">
+        <div class="aminities_bg">
+          <div class="our_aminities_heading">
+            <h3>{{project.name}} Amenities</h3>
+          </div>
+          {% if project.amenities %}
+          <div class="row">
+            {% for amenity in project.amenities %}
+            <div class="col-lg-4 col-xs-6">
+              <div class="our_aminities_box">
+                <h5>{{ amenity }}</h5>
+              </div>
+            </div>
+            {% endfor %} 
+            
+          </div>
+          {% endif%}
+        </div>
+      </div>
+    </div>
+    <div class="bg-overlay"></div>
+  </div>
+</div>
+<div class="container-fluid our_project_gallery_section" id="gallery">
+  <div class="container">
+    <div class="our_project_gallery_heading">
+      <h3> <span class="yellow"> {{ project.name }} Gallery</span></h3>
+    </div>
+    <div class="row">
+      {% if project.gallery %}
+      {% for image in project.gallery %}
+      <div class="col-lg-3 col-sm-12">
+        <div class="item"> <a href="#" data-toggle="modal" data-target="#exampleModal"><img class="img-responsive" src="{{ url_for('static', filename=image) }}" alt="imgAlt" width="1000" height="1000"></a> </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+<div class="container-fluid our_project_gallery_section configuration" id="pricing">
+  <div class="container">
+    <div class="our_project_gallery_heading">
+      <h3><span class="yellow">{{ project.name }} Configuration</span></h3>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <!-- <div class="table-responsive">-->
+        <table class="table table-striped" border="1">
+          <thead>
+            <tr>
+              <th>Configuration</th>
+              <th>RERA Carpet Area (sq.ft.)</th>
+              <th>Agreement Value in Cr.</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% if project.configurations %}
+            {% for config in project.configurations %}
+            <tr>
+              <td>{{ config.type }}</td>
+              <td> <a href="#" class="btn-info" data-toggle="modal" data-target="#exampleModal">{{ config.carpetArea }}</a> </td>
+              <td> <a href="#" class="btn-info" data-toggle="modal" data-target="#exampleModal">{{ config.agreementValue }}</a> </td>
+            </tr>
+            {% endfor %} 
+            {% endif %}
+          </tbody>
+        </table>
+        <!--</div>-->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid flour_plans_section" id="floor-plan">
+  <div class="container">
+    <div class="flour_plans_heading">
+      <h3>{{ project.name }} <span class="yellow">Floor Plans</span></h3>
+    </div>
+    {% if project.floorPlans %}
+    <div class="row">
+      {% for floorPlan in project.floorPlans %}
+      <div class="col-lg-6 col-sm-12">
+        <div class="item"> <a href="#" data-toggle="modal" data-target="#exampleModal"><img class="img-responsive" src="{{ url_for('static', filename=floorPlan.image) }}" alt="imgAlt" width="930" height="675"></a>
+          
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</div>
+<div class="container-fluid location_advantage_section" id="location">
+  <div class="container">
+    <div class="location_advantage_heading">
+      <h3>{{ project.name }} <span class="yellow">Location Benefits</span> </h3>
+    </div>
+    <div class="row">
+
+      <div class="col-lg-3">
+        <ul>
+          {% if project.locationBenefits %}
+          {% for location in project.locationBenefits %}
+          <li>{{ location }}</li>
+          {% endfor %}
+          {% endif %}
+          </ul>
+      </div>
+      
+      <div class="col-lg-9"> 
+       <img src="{{ url_for('static', filename=project.mapImage) }}" class="img-responsive" alt="imgAlt" width="1394" height="632">
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="container-fluid footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <p> <strong>Disclaimer</strong>: The content on this website is for information purposes only and does not constitute an offer to avail of any service. The Website Belong To {{ project.owner }}. Authorised Channel Partner {{project.companyName }}. MahaRera Number ({{ project.maharera }}). Prices mentioned are subject to change without notice and properties mentioned are subject to availability. Images are for representation purposes only. This is the official website of authorized marketing partner. We may also send updates to the mobile number/email id registered with us.</p>
+      <p>Project MahaRera No : {{ project.projectMaharera }} and is available on the website <a href="{{ project.mahareraWebsite }}" target="_blank">{{ project.mahareraWebsite }}</a> under registered projects. </p>
+        <p><a href="privacy-policy.php">Privacy Policy</a> </p><br>
+        
+        <p class="text-center"><img class="img-responsive" src="{{ url_for('static', filename='uploads/qr-code.webp') }}" alt="imgAlt" width="120" height="120" style="display:inline-block"></p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Model Box-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enquire Now</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+      </div>
+      <div class="modal-body">
+        <form action=""  name="form" id="form" method="post">
+          <div class="col-lg-12">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Full Name" required>
+          </div>
+          <div class="col-lg-12">
+            <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Your Phone Number" required>
+          </div>
+           
+          <div class="col-lg-12">
+            <input type="submit" class="btn" name="contactbut" id="contactbut" value="Enquire Now" >
+          </div>
+          
+          <div class="col-lg-12">
+            	<input type="checkbox" checked=""> <span class="term-condition">By submitting I accept <a href="privacy-policy.php">Privacy Policy.</a></span>
+            </div>
+        </form>
+        <div class="clearfix"></div>
+      </div>
+      <div class="modal-footer">
+        <h6>Or give us a missed call at <span><i class="fa fa-phone" aria-hidden="true"></i> <a href="tel:{{project.whatsappNumber}}">+91-{{project.whatsappNumber}}</a></span></h6>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Model Box- end-->
+<!-- Model Box-->
+<div class="modal fade" id="callback" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Request Callback</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+      </div>
+      <div class="modal-body">
+        <form action=""  name="form" id="form" method="post">
+          <div class="col-lg-12">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Full Name" required>
+          </div>
+          <div class="col-lg-12">
+            <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Your Phone Number" required>
+          </div>
+          <div class="col-lg-12">
+            <input type="submit" class="btn" name="callback" id="callback" value="Request Callback" >
+          </div>
+          <div class="col-lg-12">
+            	<input type="checkbox" checked=""> <span class="term-condition">By submitting I accept <a href="privacy-policy.php">Privacy Policy.</a></span>
+            </div>
+        </form>
+        <div class="clearfix"></div>
+      </div>
+      <div class="modal-footer">
+        <div class="inquery-btn"> <a href="tel:8879907801"><i class="fa fa-phone" aria-hidden="true"></i> Call Us</a> <a href="https://wa.me/+91{{ project.whatsappNumber }}?text=I%20want%20to%20know%20about%20project."target="_blank"> <i class="fa fa-whatsapp" aria-hidden="true"></i> Whatsapp</a> </div>
+        <p>Please note that if the details you enter are incorrect you will not be able to receive full details of this offer. We respect your privacy and your details will not be passed on to any third party companies.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Model Box- end-->
+<!-- Model Box-->
+<div class="modal fade" id="download-brochure" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Download Brochure</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+      </div>
+      <div class="modal-body">
+        <form action=""  name="form" id="form" method="post">
+          <div class="col-lg-12">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Enter Your Full Name" required>
+          </div>
+          <div class="col-lg-12">
+            <input type="text" name="phone" id="phone" class="form-control" placeholder="Enter Your Phone Number" required>
+          </div>
+          <div class="col-lg-12">
+            <input type="submit" class="btn" name="brochure" id="brochure" value="Download Now" >
+          </div>
+          <div class="col-lg-12">
+            	<input type="checkbox" checked=""> <span class="term-condition">By submitting I accept <a href="privacy-policy.php">Privacy Policy.</a></span>
+            </div>
+        </form>
+        <div class="clearfix"></div>
+      </div>
+      <div class="modal-footer"> </div>
+    </div>
+  </div>
+</div>
+<!-- Model Box- end-->
+<!-- open moddel on window load-->
+<!--<script>
+
+	$(document).ready(function(){       
+
+   $('#exampleModal').modal('show');
+
+    }); 
+
+</script>-->
+
+
+
+
+<!-- open moddel on window load start-->
+<script>
+window.onscroll = function() {myFunction()};
+var header = document.getElementById("myHeader");
+var sticky = header.offsetTop;
+function myFunction() {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+</script>
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+
+
+<!-- navbar close on responsive start-->
+<script>
+	$(function(){ 
+     var navMain = $(".navbar-collapse");
+     navMain.on("click", "a", null, function () {
+         navMain.collapse('hide');
+     });
+ });
+</script>
+<!-- navbar close on responsive End-->
+<script src="{{ url_for('static', filename='js/jquery.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+
+
+
+<!--Show icon on scroll-->
+<script>
+	$(document).scroll(function () {
+    var y = $(this).scrollTop();
+    if (y > 800) {
+        $('.sticky_icon').fadeIn();
+    } else {
+        $('.sticky_icon').fadeOut();
+    }
+});
+</script>
+
+
+<script>
+var input = document.querySelector("#phone");
+window.intlTelInput(input, {
+separateDialCode: true,
+ preferredCountries: ["in"]
+});
+</script>
+
+
+
+<!--Read More Start-->
+<script>
+	$(document).ready(function() {
+  $("#toggle").click(function() {
+    var elem = $("#toggle").text();
+    if (elem == "Read More") {
+      //Stuff to do when btn is in the read more state
+      $("#toggle").text("Read Less");
+      $("#text").slideDown();
+    } else {
+      //Stuff to do when btn is in the read less state
+      $("#toggle").text("Read More");
+      $("#text").slideUp();
+    }
+  });
+});
+</script>
+<!--Read More End-->
+
+</body>
+</html>
